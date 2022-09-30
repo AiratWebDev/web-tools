@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <script src="script_home.js"></script>
 </head>
 <body>
 <div class="content">
     <div class="background-wrap">
         <h1>Скачать видео с YouTube</h1>
         <p>Вставьте ссылку на нужное видео в поле ниже</p>
-        <form action="" method="post">
+        <form class="form-to-send" action="" method="post">
             <input class="link-input" type="text" name="link" placeholder="Ссылка" required>
             <br>
             <input class="send-btn" type="submit" value="Отправить">

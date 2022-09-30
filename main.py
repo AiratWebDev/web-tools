@@ -6,6 +6,8 @@ from fastapi.templating import Jinja2Templates
 import pytube
 import subprocess
 
+from templates.home_post import home_page_html
+
 app = FastAPI()
 
 templates = Jinja2Templates(directory='templates')
@@ -28,23 +30,7 @@ def home_get(request: Request):
 @app.post('/', response_class=HTMLResponse)
 def home_post(request: Request, link: str = Form(...)):
     title = download_video(link)
-    print(title)
-    html_content = f"""
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-        <script src="script.js" type="text/javascript"></script>
-    </head>
-    <body>
-    <h1>Поздравляем, ваше видео</h1>
-    <p>Если загрузка не началась автоматически — нажмите на ссылку ниже</p>
-    <p>{link}</p>
-    <p>{title}</p>
-    <a class="dnld-link" href="/downloads/{title}" download="{title}">Скачать</a>
-    </body>
-    </html>
-    """
+    html_content = home_page_html(title, link)
     return HTMLResponse(content=html_content)
 
 
@@ -56,3 +42,8 @@ def success(request: Request, title):
 @app.get('/script.js')
 def js_script(request: Request):
     return FileResponse(f'templates/script.js')
+
+
+@app.get('/script_home.js')
+def script_home(request: Request):
+    return FileResponse(f'templates/script_home.js')
