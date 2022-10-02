@@ -4,7 +4,8 @@ def home_page_html(title, link):
         <head>
             <meta charset="UTF-8">
             <title>Title</title>
-            <script src="script.js" type="text/javascript"></script>
+            <script src="/static/script-download.js" type="text/javascript"></script>
+            <link rel="stylesheet" href="/static/styles.css">
         </head>
         <body>
         <h1>Поздравляем, ваше видео</h1>

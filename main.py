@@ -39,11 +39,11 @@ def success(request: Request, title):
     return FileResponse(f'downloads/{title}.mp4')
 
 
-@app.get('/script.js')
+@app.get('static/script-download.js')
 def js_script(request: Request):
-    return FileResponse(f'templates/script.js')
+    return FileResponse(f'static/script-download.js')
 
 
-@app.get('/script_home.js')
+@app.get('/static/script_home.js')
 def script_home(request: Request):
-    return FileResponse(f'templates/script_home.js')
+    return FileResponse(f'static/script_home.js')
