@@ -12,9 +12,12 @@ body {
 
 .background-wrap {
     /*background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);*/
+    height: fit-content;
+    width: fit-content;
     background-color: #E6E6FA;
     padding: 50px;
     border-radius: 8px;
+    flex-shrink: 0;
 }
 
 h1, p {
@@ -37,7 +40,6 @@ h1, p {
 
 .send-btn {
     cursor: pointer;
-    align-self: flex-end;
     background-color: #242836;
     color: #F8F8FF;
     padding: 13px;
@@ -46,4 +48,8 @@ h1, p {
     outline: none;
     font-size: 16px;
     font-weight: 500;
+}
+
+.btn-wrap {
+    align-self: flex-end;
 }

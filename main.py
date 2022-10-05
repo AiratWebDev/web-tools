@@ -47,3 +47,9 @@ def js_script(request: Request):
 @app.get('/static/script_home.js')
 def script_home(request: Request):
     return FileResponse(f'static/script_home.js')
+
+
+@app.get('/favicon.ico')
+def favicon(request: Request):
+    return FileResponse(f'downloads/favicon.jpg')
+
