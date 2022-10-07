@@ -7,6 +7,8 @@ import pytube
 import subprocess
 
 from templates.home_post import home_page_html
+from static.speedtest_check import *
+from static import speedtest_check
 
 app = FastAPI()
 
@@ -39,6 +41,17 @@ def success(request: Request, title):
     return FileResponse(f'downloads/{title}.mp4')
 
 
+@app.get('/speedtest')
+def speedtest(request: Request):
+    return templates.TemplateResponse('speedtest.html', {'request': request})
+
+
+@app.post('/speedtest', response_class=HTMLResponse)
+async def speedtest(request: Request):
+    [d_spd, u_spd] = speed_check()
+    return templates.TemplateResponse('speedtest_done.html', {'request': request, 'd_spd': d_spd, 'u_spd': u_spd})
+
+
 @app.get('static/script-download.js')
 def js_script(request: Request):
     return FileResponse(f'static/script-download.js')
@@ -52,4 +65,3 @@ def script_home(request: Request):
 @app.get('/favicon.ico')
 def favicon(request: Request):
     return FileResponse(f'downloads/favicon.jpg')
-

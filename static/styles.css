@@ -8,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 60vh;
+    flex-direction: column;
 }
 
 .background-wrap {
@@ -39,6 +40,8 @@ h1, p {
 }
 
 .send-btn {
+    flex-direction: row;
+    justify-content: flex-end;
     cursor: pointer;
     background-color: #242836;
     color: #F8F8FF;
