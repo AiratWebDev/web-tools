@@ -3,6 +3,14 @@ body {
     font-family: Roboto, Arial;
 }
 
+.menu {
+    display: flex;
+    justify-content: flex-start;
+    width: fit-content;
+    padding-right: 40px;
+    border: 1px solid #d7d7fc;
+}
+
 .content {
     display: flex;
     justify-content: center;

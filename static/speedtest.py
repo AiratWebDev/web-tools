@@ -199,7 +199,7 @@ except ImportError:
             kwargs['file'] = kwargs.get('file', _py3_utf8_stdout)
         _py3_print(*args, **kwargs)
 else:
-    del __builtin__
+    del builtins
 
     def to_utf8(v):
         """Encode value to utf-8 if possible for py2"""

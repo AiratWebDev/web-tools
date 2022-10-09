@@ -4,3 +4,5 @@
 unused_code.py
 /downloads/
 /templates/test.html
+/static/test.py
+/static/links_dict.py

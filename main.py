@@ -6,9 +6,10 @@ from fastapi.templating import Jinja2Templates
 import pytube
 import subprocess
 
-from templates.home_post import home_page_html
 from static.speedtest_check import *
 from static import speedtest_check
+from static.short_link_generator import link_generator
+from static.links_dict import links_dict
 
 app = FastAPI()
 
@@ -24,6 +25,11 @@ def download_video(link):
     return title
 
 
+@app.get('/favicon.ico')
+def favicon(request: Request):
+    return FileResponse(f'media/favicon.jpg')
+
+
 @app.get('/', response_class=HTMLResponse)
 def home_get(request: Request):
     return templates.TemplateResponse('home.html', {'request': request})
@@ -32,13 +38,32 @@ def home_get(request: Request):
 @app.post('/', response_class=HTMLResponse)
 def home_post(request: Request, link: str = Form(...)):
     title = download_video(link)
-    html_content = home_page_html(title, link)
-    return HTMLResponse(content=html_content)
+    return templates.TemplateResponse('home_post.html', {'request': request, 'title': title, 'link': link})
 
 
 @app.get('/downloads/{title}', response_class=FileResponse)
 def success(request: Request, title):
     return FileResponse(f'downloads/{title}.mp4')
+
+
+@app.get('/shortener')
+def short_url(request: Request):
+    return templates.TemplateResponse('short_url.html', {'request': request})
+
+
+@app.post('/shortener', response_class=HTMLResponse)
+def short_url(request: Request, link: str = Form(...)):
+    [link, short_link] = link_generator(link)
+    links_dict[short_link] = link
+    print(links_dict)
+    return templates.TemplateResponse('short_url_post.html',
+                                      {'request': request, 'link': link, 'short_link': short_link})
+
+
+@app.get('/shortener/{short_link}', response_class=RedirectResponse)
+def shorted_url(request: Request, short_link):
+    link = links_dict[short_link]
+    return RedirectResponse(link)
 
 
 @app.get('/speedtest')
@@ -47,7 +72,7 @@ def speedtest(request: Request):
 
 
 @app.post('/speedtest', response_class=HTMLResponse)
-async def speedtest(request: Request):
+def speedtest(request: Request):
     [d_spd, u_spd] = speed_check()
     return templates.TemplateResponse('speedtest_done.html', {'request': request, 'd_spd': d_spd, 'u_spd': u_spd})
 
@@ -60,8 +85,3 @@ def js_script(request: Request):
 @app.get('/static/script_home.js')
 def script_home(request: Request):
     return FileResponse(f'static/script_home.js')
-
-
-@app.get('/favicon.ico')
-def favicon(request: Request):
-    return FileResponse(f'downloads/favicon.jpg')

@@ -1,5 +1,4 @@
-def home_page_html(title, link):
-    html_content = f"""
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +7,15 @@ def home_page_html(title, link):
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
+{% include 'menu.html' %}
 <div class="content">
     <div class="info">
         <h1>Поздравляем, ваше видео готово</h1>
-        <p>Название — «{title}»</p>
-        <p>Ваша ссылка — {link}</p>
+        <p>Название — «{{ title }}»</p>
+        <p>Ваша ссылка — {{ link }}</p>
         <p>Если загрузка не началась автоматически — нажмите на ссылку ниже</p>
-        <a class="dnld-link" href="/downloads/{title}" download="{title}">Скачать</a>
+        <a class="dnld-link" href="/downloads/{{ title }}" download="{{ title }}">Скачать</a>
     </div>
 </div>
 </body>
 </html>
-        """
-    return html_content
