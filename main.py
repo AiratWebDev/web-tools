@@ -88,6 +88,11 @@ def whois(request: Request, link: str = Form(...)):
     return templates.TemplateResponse('whois_post.html', {'request': request, 'whois_obj': whois_obj})
 
 
+@app.get('/text')
+def text(request: Request):
+    return templates.TemplateResponse('text_quantity.html', {'request': request})
+
+
 @app.get('static/script-download.js')
 def js_script(request: Request):
     return FileResponse(f'static/script-download.js')
