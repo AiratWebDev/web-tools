@@ -10,6 +10,7 @@ from static.speedtest_check import *
 from static import speedtest_check
 from static.short_link_generator import link_generator
 from static.links_dict import links_dict
+from static.whois_check import whois_check
 
 app = FastAPI()
 
@@ -55,7 +56,6 @@ def short_url(request: Request):
 def short_url(request: Request, link: str = Form(...)):
     [link, short_link] = link_generator(link)
     links_dict[short_link] = link
-    print(links_dict)
     return templates.TemplateResponse('short_url_post.html',
                                       {'request': request, 'link': link, 'short_link': short_link})
 
@@ -75,6 +75,17 @@ def speedtest(request: Request):
 def speedtest(request: Request):
     [d_spd, u_spd] = speed_check()
     return templates.TemplateResponse('speedtest_done.html', {'request': request, 'd_spd': d_spd, 'u_spd': u_spd})
+
+
+@app.get('/whois')
+def whois(request: Request):
+    return templates.TemplateResponse('whois.html', {'request': request})
+
+
+@app.post('/whois')
+def whois(request: Request, link: str = Form(...)):
+    whois_obj = whois_check(link)
+    return templates.TemplateResponse('whois_post.html', {'request': request, 'whois_obj': whois_obj})
 
 
 @app.get('static/script-download.js')

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о домене, Whois</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+{% include 'menu.html' %}
+<div class="content">
+    <div class="background-wrap">
+        <h1>Получить информацию о домене</h1>
+        <p>Введите домен или ip в поле ниже</p>
+        <form class="form-to-send" action="" method="post">
+            <input class="link-input" type="text" name="link" placeholder="Вставьте сюда домен или ip" required>
+            <br>
+            <input class="send-btn" type="submit" value="Узнать">
+        </form>
+    </div>
+</div>
+</body>
+</html>
