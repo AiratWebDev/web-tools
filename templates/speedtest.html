@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-{% include 'menu.html' %}
-<div class="content">
-    <div class="background-wrap">
-        <h1>Замерить скорость вашего интернета</h1>
-        <p>Нажмите на кнопку ниже, чтобы измерить вашу скорость. Это может занять некоторое время</p>
-        <form action="" method="post">
-            <input type="submit" class="send-btn" value="Измерить">
-        </form>
+<div class="page">
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="background-wrap">
+            <h1>Замерить скорость вашего интернета</h1>
+            <p>Нажмите на кнопку ниже, чтобы измерить вашу скорость. Это может занять некоторое время</p>
+            <form action="" method="post">
+                <input type="submit" class="send-btn" value="Измерить">
+            </form>
+        </div>
     </div>
+    {% include 'footer.html' %}
 </div>
 </body>
 </html>

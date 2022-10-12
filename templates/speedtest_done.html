@@ -6,14 +6,17 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-{% include 'menu.html' %}
-<div class="content">
-    <h1>Результаты измерения скорости вашего интернета</h1>
-    <p>Скорость указывается в Мбит</p>
-    <p>Входящая скорость — {{ d_spd }} Мбит/с
-        <br>
-        Исходящая скорость — {{ u_spd }} Мбит/с
-    </p>
+<div class="page">
+    {% include 'menu.html' %}
+    <div class="content">
+        <h1>Результаты измерения скорости вашего интернета</h1>
+        <p>Скорость указывается в Мбит</p>
+        <p>Входящая скорость — {{ d_spd }} Мбит/с
+            <br>
+            Исходящая скорость — {{ u_spd }} Мбит/с
+        </p>
+    </div>
+    {% include 'footer.html' %}
 </div>
 </body>
 </html>

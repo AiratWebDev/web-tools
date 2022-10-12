@@ -9,6 +9,11 @@ window.onload = () => {
 
         allSymbols.innerHTML = value.length
         withoutSpace.innerHTML = value.split(' ').join('').length
-        words.innerHTML = value.trim().replace(/ +/g," ").split(' ').length
+
+        if (value.length === 0) {
+            words.innerHTML = 0
+        } else {
+            words.innerHTML = value.trim().replace(/ +/g, " ").split(' ').length
+        }
     })
 }

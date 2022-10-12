@@ -93,6 +93,11 @@ def text(request: Request):
     return templates.TemplateResponse('text_quantity.html', {'request': request})
 
 
+@app.get('/password-generator')
+def password_generator(request: Request):
+    return templates.TemplateResponse('password_generator.html', {'request': request})
+
+
 @app.get('static/script-download.js')
 def js_script(request: Request):
     return FileResponse(f'static/script-download.js')

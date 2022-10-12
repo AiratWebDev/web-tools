@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-{% include 'menu.html' %}
-<div class="content">
-    <div class="info">
-        <h1>Поздравляем, ваше видео готово</h1>
-        <p>Название — «{{ title }}»</p>
-        <p>Ваша ссылка — {{ link }}</p>
-        <p>Если загрузка не началась автоматически — нажмите на ссылку ниже</p>
-        <a class="dnld-link" href="/downloads/{{ title }}" download="{{ title }}">Скачать</a>
+<div class="page">
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="info">
+            <h1>Поздравляем, ваше видео готово</h1>
+            <p>Название — «{{ title }}»</p>
+            <p>Ваша ссылка — {{ link }}</p>
+            <p>Если загрузка не началась автоматически — нажмите на ссылку ниже</p>
+            <a class="dnld-link" href="/downloads/{{ title }}" download="{{ title }}">Скачать</a>
+        </div>
     </div>
+    {% include 'footer.html' %}
 </div>
 </body>
 </html>

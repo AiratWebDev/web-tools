@@ -6,17 +6,20 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
 </head>
 <body>
-{% include 'menu.html' %}
-<div class="content">
-    <div class="background-wrap">
-        <h1>Сократить ссылку онлайн</h1>
-        <p>Вставьте ссылку на нужное видео в поле ниже</p>
-        <form class="form-to-send" action="" method="post">
-            <input class="link-input" type="text" name="link" placeholder="Вставьте сюда ссылку" required>
-            <br>
-            <input class="send-btn" type="submit" value="Сократить">
-        </form>
+<div class="page">
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="background-wrap">
+            <h1>Сократить ссылку онлайн</h1>
+            <p>Вставьте ссылку на нужное видео в поле ниже</p>
+            <form class="form-to-send" action="" method="post">
+                <input class="link-input" type="text" name="link" placeholder="Вставьте сюда ссылку" required>
+                <br>
+                <input class="send-btn" type="submit" value="Сократить">
+            </form>
+        </div>
     </div>
+    {% include 'footer.html' %}
 </div>
 </body>
 </html>

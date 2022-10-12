@@ -6,20 +6,23 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-{% include 'menu.html' %}
-<div class="content">
-    <h1>Полная информация о домене</h1>
-    <p>
-        Домен — {{ whois_obj.domain_name }}
-        <br>
-        Сервер DNS №1 — {{ whois_obj.name_servers[0] }}
-        <br>
-        Сервер DNS №2 — {{ whois_obj.name_servers[1] }}
-        <br>
-        Дата регистрации — {{ whois_obj.creation_date }}
-        <br>
-        Дата окончания регистрации — {{ whois_obj.expiration_date }}
-    </p>
+<div class="page">
+    {% include 'menu.html' %}
+    <div class="content">
+        <h1>Полная информация о домене</h1>
+        <p>
+            Домен — {{ whois_obj.domain_name }}
+            <br>
+            Сервер DNS №1 — {{ whois_obj.name_servers[0] }}
+            <br>
+            Сервер DNS №2 — {{ whois_obj.name_servers[1] }}
+            <br>
+            Дата регистрации — {{ whois_obj.creation_date }}
+            <br>
+            Дата окончания регистрации — {{ whois_obj.expiration_date }}
+        </p>
+    </div>
+    {% include 'footer.html' %}
 </div>
 </body>
 </html>
