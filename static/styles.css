@@ -33,12 +33,13 @@ body {
 .content {
     align-self: center;
     margin-top: 70px;
+    margin-bottom: 60px;
 }
 
 .background-wrap {
     /*background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);*/
     background-color: #E6E6FA;
-    padding: 50px;
+    padding: 30px 50px 50px;
     border-radius: 8px;
 }
 
@@ -85,6 +86,16 @@ h1, p, span, label {
     border: 1px solid #DBDBDB;
     font-size: 14px;
     font-family: Roboto, Arial, sans-serif
+}
+
+.translit-textarea {
+    display: flex;
+    flex-direction: column;
+}
+
+.area2 {
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 .counters {

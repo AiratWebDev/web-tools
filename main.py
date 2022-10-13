@@ -11,6 +11,7 @@ from static import speedtest_check
 from static.short_link_generator import link_generator
 from static.links_dict import links_dict
 from static.whois_check import whois_check
+from static.translit import *
 
 app = FastAPI()
 
@@ -47,12 +48,12 @@ def success(request: Request, title):
     return FileResponse(f'downloads/{title}.mp4')
 
 
-@app.get('/shortener')
+@app.get('/s')
 def short_url(request: Request):
     return templates.TemplateResponse('short_url.html', {'request': request})
 
 
-@app.post('/shortener', response_class=HTMLResponse)
+@app.post('/s', response_class=HTMLResponse)
 def short_url(request: Request, link: str = Form(...)):
     [link, short_link] = link_generator(link)
     links_dict[short_link] = link
@@ -60,7 +61,7 @@ def short_url(request: Request, link: str = Form(...)):
                                       {'request': request, 'link': link, 'short_link': short_link})
 
 
-@app.get('/shortener/{short_link}', response_class=RedirectResponse)
+@app.get('/s/{short_link}', response_class=RedirectResponse)
 def shorted_url(request: Request, short_link):
     link = links_dict[short_link]
     return RedirectResponse(link)
@@ -96,6 +97,17 @@ def text(request: Request):
 @app.get('/password-generator')
 def password_generator(request: Request):
     return templates.TemplateResponse('password_generator.html', {'request': request})
+
+
+@app.get('/translit')
+def translit(request: Request):
+    return templates.TemplateResponse('translit.html', {'request': request})
+
+
+@app.post('/translit')
+def translit(request: Request, area_text: str = Form(...)):
+    result = text_transliteration(area_text)
+    return templates.TemplateResponse('translit.html', {'request': request, 'result': result, 'area_text': area_text })
 
 
 @app.get('static/script-download.js')

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Сокращение ссылок онлайн. URL-shortener online</title>
     <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <script src="{{ url_for('static', path='/script-short.js') }}" type="text/javascript"></script>
 </head>
 <body>
 <div class="page">
@@ -13,7 +14,9 @@
             <h1>Сократить ссылку онлайн</h1>
             <p>Вставьте ссылку на нужное видео в поле ниже</p>
             <form class="form-to-send" action="" method="post">
-                <input class="link-input" type="text" name="link" placeholder="Вставьте сюда ссылку" required>
+                <input class="link-input" type="text" name="link"
+                       id="shortener-link"
+                       placeholder="Вставьте сюда ссылку" required>
                 <br>
                 <input class="send-btn" type="submit" value="Сократить">
             </form>

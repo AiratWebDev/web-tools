@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Транслитерация с русского на английский. Для поисковиков Google и Яндекс</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+<div class="page">
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="background-wrap">
+            <form method="post" action="" class="form-to-send">
+                <h1>Транслитерация текста</h1>
+                <p>Перевод текста для поисковиков Яндекс и Google с русского на латиницу</p>
+                <div class="translit-textarea">
+                    <textarea name="area_text" cols="80" rows="10" class="textarea-user-text area1"
+                              placeholder="Русский текст для перевода">{{ area_text }}</textarea>
+                    <textarea cols="80" rows="10" class="textarea-user-text area2" placeholder="Результат на латинице" disabled>{{ result }}</textarea>
+                </div>
+                <br>
+                <input class="send-btn password-inpt" type="submit" value="Перевести">
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>
