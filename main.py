@@ -4,10 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 import pytube
-import subprocess
 
 from static.speedtest_check import *
-from static import speedtest_check
 from static.short_link_generator import link_generator
 from static.links_dict import links_dict
 from static.whois_check import whois_check
@@ -115,6 +113,6 @@ def js_script(request: Request):
     return FileResponse(f'static/script-download.js')
 
 
-@app.get('/static/script_home.js')
+@app.get('/static/script-home.js')
 def script_home(request: Request):
-    return FileResponse(f'static/script_home.js')
+    return FileResponse(f'static/script-home.js')

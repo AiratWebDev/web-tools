@@ -12,6 +12,17 @@ body {
     border: 1px solid #d7d7fc;
 }
 
+.header-h1 {
+    padding-left: 40px;
+    margin-bottom: 0px;
+    font-size: 25px;
+    font-weight: 700;
+    background-image: linear-gradient(to left, #553c9a, #acacff);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
 .footer {
     margin-top: auto;
     padding: 20px;
@@ -32,13 +43,13 @@ body {
 
 .content {
     align-self: center;
-    margin-top: 70px;
+    margin-top: 40px;
     margin-bottom: 60px;
 }
 
 .background-wrap {
     /*background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);*/
-    background-color: #E6E6FA;
+    background-color: #e6e6fa;
     padding: 30px 50px 50px;
     border-radius: 8px;
 }
@@ -136,4 +147,33 @@ h1, p, span, label {
     height: 20px;
     font-size: 14px;
     padding-left: 15px;
+}
+
+.loader {
+    --b: 15px; /* border thickness */
+    --n: 8; /* number of dashes*/
+    --g: 10deg; /* gap  between dashes*/
+    --c: #9c9cff; /* the color */
+
+    width: 120px; /* size */
+    margin: 50px auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 1px; /* get rid of bad outlines */
+    background: conic-gradient(#0000, var(--c)) content-box;
+    --_m: /* we use +/-1deg between colors to avoid jagged edges */ repeating-conic-gradient(#0000 0deg,
+    #000 1deg calc(360deg / var(--n) - var(--g) - 1deg),
+    #0000 calc(360deg / var(--n) - var(--g)) calc(360deg / var(--n))),
+    radial-gradient(farthest-side, #0000 calc(98% - var(--b)), #000 calc(100% - var(--b)));
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: destination-in;
+    mask-composite: intersect;
+    animation: load 1s infinite steps(var(--n));
+}
+
+@keyframes load {
+    to {
+        transform: rotate(1turn)
+    }
 }

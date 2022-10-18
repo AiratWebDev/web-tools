@@ -8,7 +8,7 @@ window.onload = () => {
     form.prepend(elem)
 
     form.addEventListener('submit', (event) => {
-        const value = document.querySelector('.link-input').value.trim().toLowerCase()
+        const value = input.value.trim().toLowerCase()
 
         if (!value.includes('youtu')) {
             event.preventDefault()
