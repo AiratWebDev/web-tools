@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  web:
+    container_name: "web"
+    image: nginx:latest
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./etc/letsencrypt/live/1075711-cc91283.tmweb.ru/fullchain.pem:/etc/letsencrypt/live/1075711-cc91283.tmweb.ru/fullchain.pem
+      - ./etc/letsencrypt/live/1075711-cc91283.tmweb.ru/privkey.pem:/etc/letsencrypt/live/1075711-cc91283.tmweb.ru/privkey.pem
+
+#  certbot:
+#    container_name: "certbot"
+#    image: certbot/certbot:latest
+#    volumes:
+#      - ./certbot/www/:/var/www/certbot/:rw
+#      - ./certbot/conf/:/etc/letsencrypt/:rw
+
+
+  app:
+    container_name: "app"
+    image: airat696/webtools:0.5
+    build:
+      context: . #на каком уровне находится Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"

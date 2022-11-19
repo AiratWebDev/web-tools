@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ваша сокращенная ссылка готова</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
 <div class="page">
@@ -14,7 +14,7 @@
         <p>
             Старая ссылка — {{ link }}
             <br>
-            Сокращенная ссылка — <a href="http://127.0.0.1:8000/s/{{ short_link }}">127.0.0.1:8000/s/{{
+            Сокращенная ссылка — <a href="https://188.225.47.47/s/{{ short_link }}" target="_blank">188.225.47.47/s/{{
             short_link }}</a>
         </p>
     </div>
