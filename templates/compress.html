@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сжать картинку онлайн</title>
+    <meta name="description" content="Сжатие картинок онлайн в форматах png, jpg, webp">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script-compress.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="page">
+    {% include 'header.html' %}
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="background-wrap">
+            <h1>Сжать картинку онлайн</h1>
+            <p>Отправьте картинку в формате PNG, JPG, WEBP для сжатия в поле ниже</p>
+            <form class="form-to-send" action="" method="post" enctype="multipart/form-data">
+                <div class="label-div">
+                    <label for="compress-input" class="file-label">Выберите картинку. Файл не выбран</label>
+                    <input class="file-input" id="compress-input" type="file" accept="image/png,image/jpeg,image/webp" name="file"
+                           required>
+
+                </div>
+                <br>
+                <input class="send-btn" type="submit" name="send_button" value="Отправить">
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

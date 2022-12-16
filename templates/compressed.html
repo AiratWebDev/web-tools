@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сжать картинку онлайн</title>
+    <meta name="description" content="Сжатие картинок онлайн в форматах png, jpg, webp">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script-download.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="page">
+    {% include 'header.html' %}
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="background-wrap">
+            <h1>Готово</h1>
+            <p>Название файла — «{{ file_name }}»</p>
+            <p>Если загрузка не началась автоматически — нажмите на ссылку ниже</p>
+            <a class="dnld-link" href="{{ compressed_link }}" download="{{ compressed_link }}">Скачать</a>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>
