@@ -21,12 +21,34 @@ services:
 #      - ./certbot/www/:/var/www/certbot/:rw
 #      - ./certbot/conf/:/etc/letsencrypt/:rw
 
-
   app:
     container_name: "app"
-    image: airat696/webtools:0.5
+    image: airat696/webtools:0.8
+    depends_on:
+      - database
+#    restart: always
     build:
       context: . #на каком уровне находится Dockerfile
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+
+  database:
+    container_name: "database"
+    image: postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "jx8BOg2010"
+      POSTGRES_DB: "tools_links_db"
+      POSTGRES_HOST: "database"
+#      PGDATA: /home/ubuntu/postgres/data
+#      POSTGRES_INITDB_ARGS: "-A md5"
+#      - database.env #конфигурация доступов для бд
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

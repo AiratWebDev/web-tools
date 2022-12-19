@@ -9,3 +9,4 @@ unused_code.py
 /static/test.js
 /.deta/
 /static/tiny_key.py
+/database.env

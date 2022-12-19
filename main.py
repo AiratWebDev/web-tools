@@ -10,7 +10,7 @@ from database import engine, get_db
 
 import pytube
 import shutil
-from pathlib import Path
+from pytils.translit import slugify
 from static.compress_image import compressor
 
 from static.speedtest_check import *
@@ -28,11 +28,12 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 
 def download_video(link):
     youtube = pytube.YouTube(link)
-    video = youtube.streams.filter(progressive=True).desc().first()
-    _path = Path('downloads')
-    video.download(_path)  # r'L:\PythonProjects\youtubeDownloader\downloads'
     title = youtube.title
-    return title
+    slug_title = f'{slugify(title)}.mp4'
+    video = youtube.streams.filter(progressive=True).desc().first()
+    video.download(filename=slug_title, output_path='downloads/')
+    path = f'downloads/{slug_title}'
+    return [path, title]
 
 
 @app.get('/favicon.ico')
@@ -52,13 +53,13 @@ def youtube_get(request: Request):
 
 @app.post('/youtube', response_class=HTMLResponse)
 def home_post(request: Request, link: str = Form(...)):
-    title = download_video(link)
-    return templates.TemplateResponse('youtube_post.html', {'request': request, 'title': title, 'link': link})
+    [path, title] = download_video(link)
+    return templates.TemplateResponse('youtube_post.html', {'request': request, 'path': path, 'title': title, 'link': link})
 
 
 @app.get('/downloads/{title}', response_class=FileResponse)
 def success(title):
-    return FileResponse(f'downloads/{title}.mp4')
+    return FileResponse(f'downloads/{title}')
 
 
 @app.get('/compress', response_class=HTMLResponse)
@@ -69,8 +70,7 @@ def compress(request: Request):
 @app.post('/compress', response_class=HTMLResponse)
 def compress_post(request: Request, file: UploadFile = File(...)):
     _name = file.filename
-    _path = Path('downloads', 'unoptimized')
-    with open(f'downloads/unoptimized/{_name}', 'wb') as buffer:  # downloads/unoptimized/
+    with open(f'downloads/unoptimized/{_name}', 'wb') as buffer:
         shutil.copyfileobj(file.file, buffer)
     _compressed = compressor(_name)
     return templates.TemplateResponse('compressed.html',
