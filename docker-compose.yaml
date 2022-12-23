@@ -14,13 +14,6 @@ services:
       - ./etc/letsencrypt/live/1075711-cc91283.tmweb.ru/fullchain.pem:/etc/letsencrypt/live/1075711-cc91283.tmweb.ru/fullchain.pem
       - ./etc/letsencrypt/live/1075711-cc91283.tmweb.ru/privkey.pem:/etc/letsencrypt/live/1075711-cc91283.tmweb.ru/privkey.pem
 
-#  certbot:
-#    container_name: "certbot"
-#    image: certbot/certbot:latest
-#    volumes:
-#      - ./certbot/www/:/var/www/certbot/:rw
-#      - ./certbot/conf/:/etc/letsencrypt/:rw
-
   app:
     container_name: "app"
     image: airat696/webtools:0.8
@@ -39,16 +32,15 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
     restart: always
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "jx8BOg2010"
-      POSTGRES_DB: "tools_links_db"
-      POSTGRES_HOST: "database"
-#      PGDATA: /home/ubuntu/postgres/data
-#      POSTGRES_INITDB_ARGS: "-A md5"
-#      - database.env #конфигурация доступов для бд
     ports:
       - "5432:5432"
 
 volumes:
   postgres_data:
+
+#  certbot:
+#    container_name: "certbot"
+#    image: certbot/certbot:latest
+#    volumes:
+#      - ./certbot/www/:/var/www/certbot/:rw
+#      - ./certbot/conf/:/etc/letsencrypt/:rw
