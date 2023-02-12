@@ -32,7 +32,11 @@
 Файл docker-compose размещается в стартовый каталог на сервере.  
 
 Команда для запуска:  
-**`docker compose -f docker-compose.yaml up -d`**
+```docker
+docker compose -f docker-compose.yaml up -d
+```
 
 Локальный запуск самого приложения без базы данных прокси-сервера:  
-**`uvicorn main:app –reload –port 8000`**
+```python
+uvicorn main:app –reload –port 8000
+```
