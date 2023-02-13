@@ -7,7 +7,7 @@ services:
     depends_on:
       - app
     ports:
-      - "80:80"
+      - "8084:80"
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -37,10 +37,3 @@ services:
 
 volumes:
   postgres_data:
-
-#  certbot:
-#    container_name: "certbot"
-#    image: certbot/certbot:latest
-#    volumes:
-#      - ./certbot/www/:/var/www/certbot/:rw
-#      - ./certbot/conf/:/etc/letsencrypt/:rw
