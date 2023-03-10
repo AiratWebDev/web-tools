@@ -8,7 +8,7 @@
 
 ![image](https://user-images.githubusercontent.com/113205906/222952482-a924894e-c7a5-4fe9-b837-5d15c9cfc645.png)
   
-Ссылка: https://1075711-cc91283.tmweb.ru/  
+Ссылка: https://web-tools.webtm.ru/  
   
 • Для CRUD-методов использовался SQLAlchemy.  
 • Фронтэнд-часть представлена шаблонами Jinja2 и JS-скриптами.   
